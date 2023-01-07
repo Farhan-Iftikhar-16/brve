@@ -27,4 +27,4 @@
 <!--    </div>-->
 <!--</div>-->
 
-<p-paginator [rows]="15" [showCurrentPageReport]="true"  (onPageChange)="onPageChange($event)" currentPageReportTemplate="Showing {first} of {last} of {totalRecords} results" [totalRecords]="deeds.length"></p-paginator>
+<p-paginator [rows]="limit" [showCurrentPageReport]="true"  (onPageChange)="onPageChange($event)" currentPageReportTemplate="Showing {first} of {last} of {totalRecords} results" [totalRecords]="deeds.length"></p-paginator>

@@ -8,8 +8,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class PaginationComponent implements OnInit {
 
   deeds = [];
+  limit = 20;
   @Input() set setDeeds(deeds) {
-    this.deeds = deeds
+    this.deeds = deeds;
+  }
+  @Input() set setLimit(limit) {
+    this.limit = limit;
+    console.log(this.limit);
   }
   @Output() currentRecordIndex = new EventEmitter();
 

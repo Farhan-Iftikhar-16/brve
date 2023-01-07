@@ -17,7 +17,7 @@ export class DeedListComponent implements OnInit, AfterViewInit {
   deeds: any[] = [];
   selectedDeed;
   start = 0;
-  end = 15
+  end = 20;
 
   constructor(
     private deedService: DeedService,
@@ -33,9 +33,13 @@ export class DeedListComponent implements OnInit, AfterViewInit {
   }
 
   getDeeds(): void {
-    this.deedService.getDeeds(this.deedFilter.limit && this.deedFilter.limit !== 'all' ? this.deedFilter.limit : null)
+    this.end = +this.deedFilter.limit;
+    this.deedService.getDeeds()
       .subscribe((deeds: any) => {
         this.deeds = deeds;
+        if (this.deedFilter.limit === 'all') {
+          this.end = this.deeds.length;
+        }
         this.deeds.sort(function (a, b) {
           let x = a.title.toLowerCase();
           let y = b.title.toLowerCase();

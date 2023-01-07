@@ -18,9 +18,9 @@ export class DeedService {
     });
   }
 
-  getDeeds(limit) {
+  getDeeds() {
     return this.http
-      .get(limit  ? 'http://localhost:5000/deeds/get-deeds?limit=' + limit : 'http://localhost:5000/deeds/get-deeds')
+      .get('http://localhost:5000/deeds/get-deeds')
       .pipe(
         map(responseData => {
 

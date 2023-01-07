@@ -23,7 +23,7 @@ export class DeedSubmissionComponent implements OnInit {
               private toastService: ToastService) { }
 
   ngOnInit(): void {
-    this.createForm();
+   this.createForm();
   }
 
   createForm() {

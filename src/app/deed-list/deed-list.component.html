@@ -28,7 +28,7 @@
                 </div>
             
                 <!-- Pagination -->
-                <app-pagination [setDeeds]="deeds" (currentRecordIndex)="start = $event; end = $event + 15"></app-pagination>
+                <app-pagination *ngIf="deedFilter.limit !== 'all'" [setLimit]="deedFilter.limit" [setDeeds]="deeds" (currentRecordIndex)="start = $event; end = $event + +deedFilter.limit"></app-pagination>
             </div>
 
             <!-- Sidebar -->
