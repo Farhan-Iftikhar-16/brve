@@ -32,6 +32,7 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {SharedModule} from "./shared/shared.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MultiSelectModule} from "primeng/multiselect";
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     FormsModule,
     ToastModule,
-    SharedModule
+    SharedModule,
+    MultiSelectModule
   ],
   providers: [HeaderComponent, DeedService, MessageService],
   bootstrap: [AppComponent]

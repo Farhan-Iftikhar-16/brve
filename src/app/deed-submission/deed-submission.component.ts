@@ -11,8 +11,7 @@ import {ToastService} from "../services/toast.service";
 })
 export class DeedSubmissionComponent implements OnInit {
 
-  tagsList = ['Featured', 'Long Story', 'Popular', 'Heighest Rated'];
-
+  hashTags = [];
   deedsForm: FormGroup;
   @ViewChild('fileUpload') fileUpload: ElementRef;
 
@@ -20,10 +19,12 @@ export class DeedSubmissionComponent implements OnInit {
               private deedsService: DeedService,
               private router: Router,
               private utilService: UtilService,
-              private toastService: ToastService) { }
+              private toastService: ToastService
+  ) { }
 
   ngOnInit(): void {
    this.createForm();
+   this.getHashTags();
   }
 
   createForm() {
@@ -35,8 +36,6 @@ export class DeedSubmissionComponent implements OnInit {
       location: new FormControl(null, [Validators.required]),
       image: new FormControl(null, [Validators.required]),
       title: new FormControl(null, [Validators.required]),
-      deedDescription: new FormControl(null, [Validators.required]),
-      impact: new FormControl(null, [Validators.required]),
       podcast: new FormControl(null, [Validators.required]),
       whatsHappening: new FormControl(null, [Validators.required]),
       hashTags: new FormControl([]),
@@ -44,12 +43,12 @@ export class DeedSubmissionComponent implements OnInit {
     });
   }
 
-  onCheckChange(event: any) {
-    if(event.target.checked) {
-      this.deedsForm.value.categories.push(event.target.value)
-    } else {
-      this.deedsForm.value.categories.splice(this.deedsForm.value.categories.indexOf(event.target.value), 1)
-    }
+  getHashTags(): void {
+    this.deedsService.getHashTags().subscribe((response: any) => {
+      this.hashTags = response.hashTags;
+    }, error => {
+      this.toastService.error(error.error.message);
+    })
   }
 
   onFileSelect(event): void {
@@ -66,6 +65,6 @@ export class DeedSubmissionComponent implements OnInit {
       this.router.navigate(['/deed-detail/' + response.deed._id]).then();
     }, error => {
       this.toastService.error(error.error.message);
-    })
+    });
   }
 }

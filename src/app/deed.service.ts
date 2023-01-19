@@ -65,6 +65,10 @@ export class DeedService {
   getDeedById(id): Observable<any> {
     return  this.http.get('http://localhost:5000/deeds/get-deed-by-id/' + id);
   }
+
+  getHashTags(): Observable<any> {
+    return this.http.get('http://localhost:5000/hash-tags/get-hash-tags');
+  }
 }
 
 
